@@ -1,0 +1,42 @@
+.unactive th {
+  padding: 16px 7rem 16px 8px;
+  text-align: start;
+}
+
+.unactive th:nth-child(3) {
+  padding: 16px 2rem 16px 8px;
+}
+
+.unactive td {
+  padding: 12px 0px 12px 8px;
+}
+
+/* .unactive td:nth-child(3) {
+  padding: 12px 0px 12px 8px;
+} */
+
+.unactive td:nth-child(4) {
+  padding: 12px 2rem 12px 8px;
+}
+
+
+.active th {
+  padding: 16px 4rem 16px 8px;
+  text-align: start;
+}
+
+.active th:nth-child(3) {
+  padding: 16px 2rem 16px 0px;
+}
+
+.active td {
+  padding: 12px 0px 12px 8px;
+}
+
+/* .active td:nth-child(3) {
+  padding: 12px 0px 12px 8px;
+} */
+
+.active td:nth-child(4) {
+  padding: 12px 2rem 12px 0px;
+}
