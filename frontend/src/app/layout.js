@@ -1,6 +1,7 @@
 "use client";
 import { Provider } from "react-redux";
 import "./globals.css";
+import "../app/styles/loader.css";
 import { store } from "./store/store";
 import { ToastContainer } from "react-toastify";
 

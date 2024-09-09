@@ -8,7 +8,7 @@ import { FaChevronRight } from "react-icons/fa";
 const Sidebar = ({ active }) => {
   return (
     <div>
-      <div className="h-screen relative lg:w-60 w-20 bg-secondary-400 text-white">
+      <div className="h-screen fixed lg:w-60 w-20 bg-secondary-400 text-white">
         <div className="flex flex-col items-center gap-3 pt-6 pb-10">
           <Image src={logo} alt="Udemy Logo" />
           <p className="font-semibold text-sm text-center lg:w-full w-1/2">

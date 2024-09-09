@@ -1,0 +1,24 @@
+.loader {
+	position: fixed;
+	top: 40%;
+	left: 45%;
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	border: 8px solid;
+	border-color: #f5f6f7;
+	border-top-color: #036dc4;
+	animation: spinner 1s infinite linear;
+}
+
+@media (max-width: 500px) {
+	.loader {
+		left: 40%;
+	}
+}
+
+@keyframes spinner {
+	100% {
+		transform: rotate(1turn);
+	}
+}

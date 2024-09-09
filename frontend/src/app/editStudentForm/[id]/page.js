@@ -16,7 +16,7 @@ const EditStudentForm = () => {
   const dispatch = useDispatch();
   const studentId = pathname.split("/").pop();
 
-  const students = useSelector((state) => state.students.students);
+  const {students, status} = useSelector((state) => state.students);
   const student = students.find((t) => t.id === parseInt(studentId, 10));
   const [firstName, setFirstName] = useState(student.firstName);
   const [lastName, setLastName] = useState(student.lastName);
@@ -43,16 +43,24 @@ const EditStudentForm = () => {
     }
   };
 
+  if (status === "loading") {
+    return (
+      <div className="min-h-screen pb-40  lg:fixed relative lg:mt-0 mt-60 top-1/2 lg:left-1/2 flex justify-center gap-2">
+        <div className="loader"></div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex">
       <Sidebar active="students" />
-      <div className="ms-36 me-20 mt-36">
+      <div className="w-[70%] md:mx-auto ms-28 md:me-20 mx-10 md:mt-32 mt-20">
         <h1 className="font-semibold text-3xl text-grey-400 mb-24">
           Edit Student
         </h1>
         <form onSubmit={handleUpdate}>
           <div className="flex flex-col gap-8">
-            <div className="flex gap-8">
+            <div className="flex md:flex-row flex-col gap-8">
               <div className="flex flex-col gap-1">
                 <label className="text-grey-200 font-medium text-sm">
                   First Name
@@ -78,7 +86,7 @@ const EditStudentForm = () => {
                 />
               </div>
             </div>
-            <div className="flex gap-8">
+            <div className="flex md:flex-row flex-col gap-8">
               <div className="flex flex-col gap-1">
                 <label className="text-grey-200 font-medium text-sm">
                   Email

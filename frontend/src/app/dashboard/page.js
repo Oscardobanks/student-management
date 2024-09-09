@@ -28,12 +28,12 @@ const Dashboard = () => {
   return (
     <div className="flex">
       <Sidebar active="dashboard" />
-      <div className="xl:ms-32 w-[90%]">
+      <div className="lg:ms-64 ms-20 w-[90%]">
         <div className="flex flex-col gap-4 items-center mt-28 md:px-20 px-10">
-          <p className="font-semibold text-grey-400 text-4xl">
+          <p className="font-semibold text-grey-400 md:text-4xl text-3xl">
             Welcome to the Students Dashboard
           </p>
-          <p className="font-semibold text-black text-2xl">
+          <p className="font-semibold text-black md:text-2xl text-xl">
             Here is how you can manage students{" "}
           </p>
         </div>

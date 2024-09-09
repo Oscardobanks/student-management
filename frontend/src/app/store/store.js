@@ -5,14 +5,12 @@ import {
 } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// Define the initial state
 const initialState = {
   student: null,
   students: [],
   status: "idle",
 };
 
-// Create a thunk for fetching students
 export const fetchStudents = createAsyncThunk("students/fetchStudents", async () => {
   const response = await axios.get(
     "http://127.0.0.1:5000/student"
@@ -42,7 +40,6 @@ export const deleteStudent = createAsyncThunk("students/deleteStudent", async (i
   return id;
 });
 
-// Create a slice for managing the students
 const studentsSlice = createSlice({
   name: "student",
   initialState,
@@ -88,10 +85,6 @@ const studentsSlice = createSlice({
     })
     .addCase(updateStudent.fulfilled, (state, action) => {
       state.status = "succeeded";
-      // const studentIndex = state.students.findIndex((student) => student.id === action.payload.id);
-      // if (studentIndex !== -1) {
-      //   state.students[studentIndex] = action.payload;
-      // }
       state.student = action.payload;
     })
     .addCase(updateStudent.rejected, (state) => {
@@ -110,12 +103,10 @@ const studentsSlice = createSlice({
   },
 });
 
-// Export the actions and the reducer
 export const { resetStudent } =
   studentsSlice.actions;
 export default studentsSlice.reducer;
 
-// Configure the Redux store
 export const store = configureStore({
   reducer: {
     students: studentsSlice.reducer,
@@ -123,5 +114,4 @@ export const store = configureStore({
 });
 
 export const getStudentData = (state) => state.students;
-// Dispatch the fetchStudents action when the store is created
 store.dispatch(fetchStudents());

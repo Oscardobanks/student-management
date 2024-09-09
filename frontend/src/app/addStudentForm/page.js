@@ -31,7 +31,7 @@ const AddStudentForm = () => {
   return (
     <div className="flex">
       <Sidebar active="students" />
-      <div className="md:ms-36 md:me-20 mx-10 md:mt-36 mt-20">
+      <div className="w-[70%] md:mx-auto ms-28 md:me-20 mx-10 md:mt-32 mt-20">
         <h1 className="font-semibold text-3xl text-grey-400 mb-24">
           Add Student
         </h1>
