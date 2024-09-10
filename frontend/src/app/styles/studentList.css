@@ -11,10 +11,6 @@
   padding: 12px 0px 12px 8px;
 }
 
-/* .unactive td:nth-child(3) {
-  padding: 12px 0px 12px 8px;
-} */
-
 .unactive td:nth-child(4) {
   padding: 12px 2rem 12px 8px;
 }
@@ -32,10 +28,6 @@
 .active td {
   padding: 12px 0px 12px 8px;
 }
-
-/* .active td:nth-child(3) {
-  padding: 12px 0px 12px 8px;
-} */
 
 .active td:nth-child(4) {
   padding: 12px 2rem 12px 0px;

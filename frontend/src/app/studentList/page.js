@@ -8,17 +8,16 @@ import { deleteStudent, fetchStudents } from "../store/store";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaX } from "react-icons/fa6";
+import DeleteModal from "../components/deleteModal";
 
 const StudentList = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const [activeStudent, setActiveStudent] = useState("");
+  const [showModal, setShowModal] = useState(false);
   const [activeStudentDetails, setActiveStudentDetails] = useState([]);
   const { students, status } = useSelector((state) => state.students);
   const tableRef = useRef(null);
-
-  console.log(status);
-  console.log(students);
 
   const handleActiveStudent = (studentId) => {
     setActiveStudent(studentId);
@@ -35,15 +34,8 @@ const StudentList = () => {
     }
   };
 
-  const handleDelete = (id) => {
-    try {
-      dispatch(deleteStudent(id));
-      setActiveStudentDetails([]);
-      toast.success("Student Details is deleted successfully!");
-    } catch (error) {
-      console.error(error);
-      toast.error("Failed to update student detail.");
-    }
+  const handleDeleteModal = () => {
+    setShowModal(true);
   };
 
   useEffect(() => {
@@ -67,7 +59,9 @@ const StudentList = () => {
       <Sidebar active="students" />
       <div
         className={`mt-6 mb-10 overflow-auto ${
-          activeStudentDetails ? "w-[75%] md:mx-auto ms-28 md:me-10 mx-11" : "ms-24"
+          activeStudentDetails
+            ? "w-[75%] xl:ms-auto lg:ms-72 ms-28 md:me-10 mx-11"
+            : "ms-24"
         }`}
       >
         <button
@@ -125,14 +119,30 @@ const StudentList = () => {
               key={index}
               className="bg-secondary-300 text-white lg:w-72 w-64 rounded-2xl p-10"
             >
-              <div onClick={()=> setActiveStudentDetails([])} className="flex justify-end mb-5 sm:hidden">
+              {showModal && (
+                <div className="bg-[#2b2a2a99] xl:pb-20 lg:pb-0 pb-40 flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50">
+                  <DeleteModal
+                    student={student}
+                    setShowModal={setShowModal}
+                    setActiveStudentDetails={setActiveStudentDetails}
+                  />
+                </div>
+              )}
+
+              <div
+                onClick={() => setActiveStudentDetails([])}
+                className="flex justify-end mb-5 sm:hidden"
+              >
                 <FaX />
               </div>
               <div className="flex flex-col items-center gap-5">
                 <h1 className="text-2xl font-bold">Student Info</h1>
                 <div className="flex flex-col items-center gap-1">
                   <p className="text-base font-bold">Student Name</p>
-                  <p className="text-base"> {student.firstName} </p>
+                  <p className="text-base capitalize">
+                    {" "}
+                    {student.firstName} {student.lastName}{" "}
+                  </p>
                 </div>
                 <div className="flex flex-col items-center gap-1">
                   <p className="text-base font-bold">Student ID</p>
@@ -168,7 +178,7 @@ const StudentList = () => {
                   </button>
                   <button
                     type="button"
-                    onClick={() => handleDelete(student.id)}
+                    onClick={handleDeleteModal}
                     className="text-white bg-[#DB2525] rounded w-24 py-2"
                   >
                     Delete
